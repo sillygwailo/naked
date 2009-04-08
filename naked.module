@@ -1,0 +1,76 @@
+<?php 
+
+function is_naked_day($d = 9) {
+  $start = date('U', mktime(-12, 0, 0, 04, $d, date('Y')));
+  $end = date('U', mktime(36, 0, 0, 04, $d, date('Y')));
+  $z = date('Z') * -1;
+  $now = time() + $z; 
+  if ( $now >= $start && $now <= $end ) {
+    return true;
+  }
+  return false;
+}
+
+function naked_menu() {
+  $items = array();
+
+  $items['admin/settings/naked'] = array(
+    'title' => 'CSS Naked Day Settings',
+    'description' => 'Settings for the CSS Naked Day.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('naked_admin'),
+    'access arguments' => array('access administration pages'),
+    'type' => MENU_NORMAL_ITEM,
+   );
+
+  return $items;
+}
+
+function naked_preprocess_page(&$vars){
+  if (is_naked_day()) {
+    $vars['css'] = array();
+    $vars['styles'] = '';
+    
+  }
+  
+}
+
+function naked_init(){
+  if (is_naked_day()) {
+    drupal_add_js(drupal_get_path('module', 'naked') .'/naked.js');
+  }
+}
+
+function naked_footer($main = 0){
+  if (is_naked_day() && variable_get('naked_options', 1) == 1) {
+    return '<div id="naked">'. variable_get('naked_message', _naked_get_message()) .'</div>';
+  }
+
+  
+}
+
+function naked_admin(){
+  $form['naked_message'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Enter the explanation Message'),
+    '#default_value' => variable_get('naked_message', _naked_get_message()),
+    
+    );
+    
+  $form['naked_options'] = array(
+    '#type' => 'radios',
+    '#title' => t('Display Message'),
+    '#default_value' => variable_get('naked_options', 1),
+    '#options' => array(1 => t('Yes'), 0 => t('No')),
+  );
+
+  return system_settings_form($form);
+}
+
+function _naked_get_message(){
+  return '<h3>What happened to the design?</h3>
+  <p>To know more about why styles are disabled on this website visit the
+  <a href="http://naked.dustindiaz.com" title="Web Standards Naked Day Host Website">
+  Annual CSS Naked Day</a> website for more information.</p>';
+  
+}

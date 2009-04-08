@@ -1,0 +1,5 @@
+; $Id$
+name = CSS Naked Day 
+description = Removes all the CSS from your website on April 9. 
+package = "Other"
+core = 6.x
