@@ -1,4 +1,5 @@
-name = CSS Naked Day 
-description = Removes all the CSS from your website on April 9. 
-package = "Other"
-core = 6.x
+name = CSS Naked Day
+description = Removes all the CSS from your website on April 9.
+package = Other
+core = 7.x
+scripts[] = CSSNakedDay.js
