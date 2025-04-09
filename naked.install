@@ -17,8 +17,8 @@ function naked_requirements($phase) {
       'title' => 'CSSNakedDay.js',
       'severity' => REQUIREMENT_ERROR,
       'description' => $t(
-        'You need to install the CSSNakedDay.js file from %url.',
-        array('%url' => 'https://github.com/tobiassjosten/CSSNakedDay.js')
+        'You need to install the CSSNakedDay.js file from !url.',
+        array('!url' => l('https://github.com/tobiassjosten/CSSNakedDay.js', 'https://github.com/tobiassjosten/CSSNakedDay.js'))
       ),
     ),
   );
