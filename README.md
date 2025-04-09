@@ -19,7 +19,7 @@ CSSNakedDay.js file.
 Requirements
 ------------
 
-This module requires that the following modules are also enabled:
+This module requires that the following JavaScript library is also enabled:
 
  * [CSSNakedDay.js](https://github.com/tobiassjosten/CSSNakedDay.js)
 
