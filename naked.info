@@ -1,5 +1,7 @@
+type = module
 name = CSS Naked Day
 description = Removes all the CSS from your website on April 9.
 package = Other
-core = 7.x
+version = VERSION
+backdrop = 1.x
 scripts[] = CSSNakedDay.js
